@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insleep Potch | Burgers, Pizza, Loaded Chips &amp; Shakes — The Bult, Potchefstroom</title>
+<meta name="description" content="Insleep Potch — convenience store and takeaway at 100 Steve Biko Street, the Bult, Potchefstroom. Burgers, loaded chips, pizza, soft serve, waffles and shakes. Open till late. Order on UberEats or Mr D.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF6EC;
+    --paper:#FFFFFF;
+    --ink:#2B1A14;
+    --ink-soft:#7A6154;
+    --tomato:#D93B2B;
+    --tomato-dark:#B32E20;
+    --butter:#FFC845;
+    --mint:#2E9E6B;
+    --line:#F2E2D0;
+    --shadow:0 2px 4px rgba(43,26,20,.05), 0 8px 24px rgba(43,26,20,.07);
+    --shadow-lift:0 4px 8px rgba(43,26,20,.07), 0 16px 40px rgba(43,26,20,.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'DM Sans', system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .display{
+    font-family:'Alfa Slab One', Georgia, "Times New Roman", serif;
+    font-weight:400; letter-spacing:-0.005em; line-height:1.05;
+  }
+  .wrap{ max-width:64rem; margin:0 auto; padding:0 1.25rem; }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,246,236,.94);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .bar{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.85rem 1.25rem; max-width:64rem; margin:0 auto; }
+  .logo{ display:flex; align-items:baseline; gap:.45rem; }
+  .logo .mark{ font-size:1.35rem; color:var(--tomato); }
+  .logo .sub{ font-size:.6rem; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-soft); font-weight:700; }
+  nav.links{ display:none; gap:1.6rem; font-size:.95rem; font-weight:500; }
+  nav.links a{ padding:.2rem 0; border-bottom:2px solid transparent; }
+  nav.links a:hover{ color:var(--tomato); border-bottom-color:var(--tomato); }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:.4rem;
+    font-weight:700; border-radius:999px; border:2px solid transparent;
+    transition:transform .12s ease, background .15s ease, box-shadow .15s ease;
+    cursor:pointer;
+  }
+  .btn:active{ transform:translateY(1px) scale(.985); }
+  .btn-solid{ background:var(--tomato); color:#fff; box-shadow:var(--shadow); }
+  .btn-solid:hover{ background:var(--tomato-dark); box-shadow:var(--shadow-lift); }
+  .btn-ghost{ background:var(--paper); color:var(--ink); border-color:var(--line); }
+  .btn-ghost:hover{ border-color:var(--tomato); color:var(--tomato); }
+  .btn-sm{ font-size:.82rem; padding:.55rem 1.05rem; }
+  .btn-lg{ font-size:1rem; padding:.85rem 1.6rem; }
+
+  /* ---------- STATUS PILL ---------- */
+  .status{
+    display:inline-flex; align-items:center; gap:.5rem;
+    background:var(--paper); border:1px solid var(--line);
+    border-radius:999px; padding:.4rem .9rem .4rem .7rem;
+    font-size:.85rem; font-weight:700; box-shadow:var(--shadow);
+  }
+  .dot{ width:.55rem; height:.55rem; border-radius:50%; background:var(--ink-soft); flex:none; }
+  .status.open .dot{ background:var(--mint); box-shadow:0 0 0 4px rgba(46,158,107,.18); }
+  .status.shut .dot{ background:var(--tomato); box-shadow:0 0 0 4px rgba(217,59,43,.15); }
+  .status.open{ color:var(--mint); }
+  .status.shut{ color:var(--tomato); }
+  .status .note{ color:var(--ink-soft); font-weight:500; }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:2.75rem 1.25rem 3rem; max-width:64rem; margin:0 auto; }
+  .hero h1{ font-size:clamp(2rem, 9.5vw, 2.7rem); margin:1rem 0 .9rem; overflow-wrap:break-word; }
+  .hero h1 .pop{ color:var(--tomato); }
+  .hero .lede{ font-size:1.05rem; color:var(--ink-soft); max-width:34rem; margin-bottom:1.6rem; }
+  .hero .actions{ display:flex; flex-wrap:wrap; gap:.75rem; }
+  .meta{ display:flex; flex-wrap:wrap; gap:.4rem 1.1rem; margin-top:1.4rem; font-size:.85rem; color:var(--ink-soft); font-weight:500; }
+  .meta span::before{ content:"●"; color:var(--butter); margin-right:.45rem; font-size:.6rem; vertical-align:middle; }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{ overflow:hidden; background:var(--butter); border-top:2px solid var(--ink); border-bottom:2px solid var(--ink); padding:.6rem 0; }
+  .marquee-track{ display:flex; width:max-content; animation:roll 26s linear infinite; }
+  .marquee-track span{ font-size:.95rem; padding:0 1.4rem; white-space:nowrap; color:var(--ink); }
+  @keyframes roll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  @media (prefers-reduced-motion:reduce){ .marquee-track{ animation:none; } }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:3.5rem 1.25rem; max-width:64rem; margin:0 auto; }
+  .eyebrow{ font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; font-weight:700; color:var(--tomato); margin-bottom:.5rem; }
+  section h2{ font-size:1.9rem; margin-bottom:.4rem; }
+  .sub{ color:var(--ink-soft); margin-bottom:2rem; }
+
+  .grid{ display:grid; grid-template-columns:1fr; gap:1rem; }
+
+  .card{
+    background:var(--paper); border:1px solid var(--line); border-radius:1.1rem;
+    padding:1.35rem; box-shadow:var(--shadow); transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .card:hover{ transform:translateY(-3px); box-shadow:var(--shadow-lift); }
+  .tag{
+    display:inline-block; font-size:.68rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    background:#FDEEE9; color:var(--tomato); padding:.25rem .6rem; border-radius:999px; margin-bottom:.7rem;
+  }
+  .tag.sweet{ background:#FFF3D6; color:#9A6B00; }
+  .tag.fresh{ background:#E6F5EE; color:var(--mint); }
+  .card h3{ font-size:1.15rem; font-weight:700; margin-bottom:.35rem; }
+  .card p{ color:var(--ink-soft); font-size:.92rem; }
+  /* must match .card p specificity, or the card colour wins */
+  .card .eyebrow{ color:var(--tomato); font-size:.72rem; }
+
+  /* ---------- DEALS ---------- */
+  .deals-band{ background:var(--ink); color:var(--cream); }
+  .deals-band .eyebrow{ color:var(--butter); }
+  .deals-band h2{ color:var(--cream); }
+  .deals-band .sub{ color:#C9B4A8; }
+  .deal{
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14);
+    border-radius:1.1rem; padding:1.35rem;
+  }
+  .deal .num{ font-size:2.1rem; color:var(--butter); margin-bottom:.3rem; }
+  .deal p{ font-size:.92rem; color:#DCCBC0; }
+
+  /* ---------- ABOUT ---------- */
+  .glance li{ display:flex; justify-content:space-between; gap:1rem; padding:.65rem 0; border-bottom:1px dashed var(--line); font-size:.92rem; }
+  .glance li:last-child{ border-bottom:none; }
+  .glance .k{ color:var(--ink-soft); }
+  .glance .v{ font-weight:700; text-align:right; }
+  .badge-1960{
+    display:inline-block; background:var(--butter); color:var(--ink);
+    font-size:.7rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    padding:.35rem .8rem; border-radius:999px; margin-bottom:1rem;
+  }
+  .about-copy p{ color:var(--ink-soft); margin-bottom:1rem; }
+
+  /* ---------- ORDER ---------- */
+  .order-card{
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    background:var(--paper); border:2px solid var(--line); border-radius:1.1rem;
+    padding:1.3rem 1.5rem; box-shadow:var(--shadow); transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  }
+  .order-card:hover{ transform:translateY(-3px); border-color:var(--tomato); box-shadow:var(--shadow-lift); }
+  .order-card .who{ font-size:1.25rem; font-weight:700; }
+  .order-card .arrow{ font-size:1.4rem; color:var(--tomato); }
+  .collect{ font-size:.88rem; color:var(--ink-soft); margin-top:1.1rem; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--paper); border-top:1px solid var(--line); }
+  .fgrid{ display:grid; grid-template-columns:1fr; gap:1.6rem; padding:2.75rem 1.25rem; max-width:64rem; margin:0 auto; }
+  footer .addr{ color:var(--ink-soft); font-size:.92rem; margin-top:.5rem; max-width:22rem; }
+  .flinks{ display:flex; flex-direction:column; gap:.55rem; font-size:.92rem; font-weight:500; }
+  .flinks a:hover{ color:var(--tomato); }
+  .credit{ text-align:center; font-size:.78rem; color:var(--ink-soft); padding:0 1.25rem 1.75rem; }
+
+  /* ---------- MOBILE ORDER BAR ---------- */
+  .orderbar{
+    position:fixed; bottom:0; left:0; right:0; z-index:60;
+    background:rgba(255,255,255,.97); border-top:1px solid var(--line);
+    padding:.7rem 1rem calc(.7rem + env(safe-area-inset-bottom));
+    display:flex; gap:.6rem; box-shadow:0 -6px 24px rgba(43,26,20,.1);
+  }
+  .orderbar .btn{ flex:1; font-size:.9rem; padding:.8rem; }
+  .spacer{ height:4.5rem; }
+
+  :focus-visible{ outline:3px solid var(--tomato); outline-offset:2px; border-radius:6px; }
+
+  /* ---------- DESKTOP ---------- */
+  @media (min-width:640px){
+    nav.links{ display:flex; }
+    .hero{ padding:4rem 1.25rem 3.5rem; }
+    .hero h1{ font-size:clamp(2.7rem, 6vw, 3.9rem); }
+    section{ padding:4.5rem 1.25rem; }
+    section h2{ font-size:clamp(1.9rem, 3.4vw, 2.4rem); }
+    .grid.two{ grid-template-columns:1fr 1fr; gap:1.25rem; }
+    .grid.three{ grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+    .fgrid{ grid-template-columns:1fr auto; }
+    .flinks{ align-items:flex-end; }
+    .orderbar, .spacer{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a href="#top" class="logo">
+      <span class="display mark">Insleep</span>
+      <span class="sub">Potch</span>
+    </a>
+    <nav class="links">
+      <a href="#menu">Menu</a>
+      <a href="#deals">Deals</a>
+      <a href="#about">About</a>
+      <a href="#find">Find us</a>
+    </nav>
+    <a href="#order" class="btn btn-solid btn-sm">Order now</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="status shut" id="status" role="status" aria-live="polite">
+      <span class="dot" aria-hidden="true"></span>
+      <span id="statusText">Checking hours…</span>
+    </div>
+
+    <h1 class="display">Hot food,<br><span class="pop">two minutes</span><br>from res.</h1>
+
+    <p class="lede">
+      Burgers, loaded chips, pizza, soft serve, waffles and shakes — made fresh at the Bult
+      since 1960. Still open when the library kicks you out.
+    </p>
+
+    <div class="actions">
+      <a href="#order" class="btn btn-solid btn-lg">Order delivery</a>
+      <a href="#menu" class="btn btn-ghost btn-lg">See the menu</a>
+    </div>
+
+    <div class="meta">
+      <span>100 Steve Biko St, the Bult</span>
+      <span>Walk-in or delivery</span>
+      <span>Student deals</span>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="display">Oreo bubble waffle · Chicken tikka pizza · The Bazooka · Biltong lovers pizza · Loaded chips · Thick shakes ·</span>
+      <span class="display">Oreo bubble waffle · Chicken tikka pizza · The Bazooka · Biltong lovers pizza · Loaded chips · Thick shakes ·</span>
+    </div>
+  </div>
+
+  <!-- MENU -->
+  <section id="menu">
+    <p class="eyebrow">What's cooking</p>
+    <h2 class="display">The menu</h2>
+    <p class="sub">A taste of the favourites — full range on UberEats and Mr D.</p>
+    <div class="grid two">
+      <div class="card">
+        <span class="tag">Signature</span>
+        <h3>The Bazooka</h3>
+        <p>Loaded footlong sub, stacked and sauced. The one people queue for.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Best seller</span>
+        <h3>Chicken tikka pizza</h3>
+        <p>Fired fresh, sliced thick. Pairs well with a cold drink on a warm Potch night.</p>
+      </div>
+      <div class="card">
+        <span class="tag sweet">Sweet</span>
+        <h3>Oreo bubble waffle</h3>
+        <p>Soft serve, chocolate drizzle, crushed Oreo. The study-break essential.</p>
+      </div>
+      <div class="card">
+        <span class="tag fresh">Every day</span>
+        <h3>Burgers · chips · shakes</h3>
+        <p>Plus cold drinks, imported snacks and the everyday convenience shelf.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEALS -->
+  <div class="deals-band" id="deals">
+    <section>
+      <p class="eyebrow">Worth knowing</p>
+      <h2 class="display">Student deals</h2>
+      <p class="sub">Bring your student card — that's the whole catch.</p>
+      <div class="grid three">
+        <div class="deal">
+          <p class="display num">R10 off</p>
+          <p>on orders over R100, for NWU students.</p>
+        </div>
+        <div class="deal">
+          <p class="display num">2-for-1</p>
+          <p>milkshakes, every Wednesday after 8pm.</p>
+        </div>
+        <div class="deal">
+          <p class="display num">Late</p>
+          <p>kitchen stays on when most others have closed.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="grid two">
+      <div class="about-copy">
+        <span class="badge-1960">Serving Potch since 1960</span>
+        <h2 class="display">A Bult institution</h2>
+        <p style="margin-top:.9rem;">
+          Insleep has fed Potchefstroom's Bult for generations — long before it was a student postcode.
+          What started as a neighbourhood convenience store grew into a takeaway landmark: pizza ovens
+          next to the milk fridge, soft serve next to the till.
+        </p>
+        <p>
+          The idea hasn't changed — be close, be open, be quick — for the students, residence staff
+          and locals who need something good to eat at an hour when most kitchens have shut.
+        </p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">At a glance</p>
+        <ul class="glance">
+          <li><span class="k">Trading since</span><span class="v">1960</span></li>
+          <li><span class="k">Where</span><span class="v">100 Steve Biko St, the Bult</span></li>
+          <li><span class="k">Hours</span><span class="v">08:00 till late, daily</span></li>
+          <li><span class="k">Delivery</span><span class="v">UberEats · Mr D</span></li>
+          <li><span class="k">Also stocks</span><span class="v">Groceries &amp; imports</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER -->
+  <section id="order">
+    <p class="eyebrow">Two taps away</p>
+    <h2 class="display">Order delivery</h2>
+    <p class="sub">Pick your app — we're on both.</p>
+    <div class="grid two">
+      <a href="https://www.ubereats.com/store-browse-uuid/1be8b477-05" target="_blank" rel="noopener" class="order-card">
+        <div>
+          <span class="tag">Delivery partner</span>
+          <p class="who">UberEats</p>
+        </div>
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+      <a href="https://mrd.com/delivery/restaurant/insleep-die-bult/" target="_blank" rel="noopener" class="order-card">
+        <div>
+          <span class="tag">Delivery partner</span>
+          <p class="who">Mr D</p>
+        </div>
+        <span class="arrow" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+    <p class="collect">Rather collect? Walk in at 100 Steve Biko Street — no app needed.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="find">
+    <div class="fgrid">
+      <div>
+        <span class="display mark" style="font-size:1.35rem; color:var(--tomato);">Insleep</span>
+        <p class="addr">100 Steve Biko Street, the Bult, Potchefstroom, 2531. Open 08:00 till late, seven days a week.</p>
+      </div>
+      <div class="flinks">
+        <a href="https://www.instagram.com/insleep.potch" target="_blank" rel="noopener">Instagram — @insleep.potch</a>
+        <a href="#find">WhatsApp — 018 293 3XXX</a>
+        <a href="#find">Get directions</a>
+      </div>
+    </div>
+    <p class="credit">Concept site prepared for the BMAR326 digital marketing strategy.</p>
+  </footer>
+
+</main>
+
+<!-- MOBILE ORDER BAR -->
+<div class="orderbar">
+  <a href="https://www.ubereats.com/store-browse-uuid/1be8b477-05" target="_blank" rel="noopener" class="btn btn-solid">UberEats</a>
+  <a href="https://mrd.com/delivery/restaurant/insleep-die-bult/" target="_blank" rel="noopener" class="btn btn-ghost">Mr D</a>
+</div>
+<div class="spacer"></div>
+
+<script>
+  // Live open/closed status, computed from Insleep's stated trading hours
+  // (08:00 till late, daily). Kept in one place so hours are easy to update.
+  var OPEN_HOUR = 8;    // 08:00
+  var CLOSE_HOUR = 23;  // "till late"
+
+  function refreshStatus(){
+    var el = document.getElementById('status');
+    var txt = document.getElementById('statusText');
+    if(!el || !txt) return;
+
+    var now = new Date();
+    var h = now.getHours();
+    var isOpen = h >= OPEN_HOUR && h < CLOSE_HOUR;
+
+    el.classList.toggle('open', isOpen);
+    el.classList.toggle('shut', !isOpen);
+
+    if(isOpen){
+      txt.innerHTML = 'Open now <span class="note">· till late</span>';
+    } else if(h < OPEN_HOUR){
+      txt.innerHTML = 'Closed <span class="note">· opens 08:00</span>';
+    } else {
+      txt.innerHTML = 'Closed <span class="note">· opens 08:00 tomorrow</span>';
+    }
+  }
+
+  refreshStatus();
+  setInterval(refreshStatus, 60000);
+</script>
+
+</body>
+</html>
